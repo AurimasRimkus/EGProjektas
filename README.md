@@ -9,6 +9,6 @@ Aurimas Rimkus
 Marius Jaskūnas  
 Gabija Tiliūtė  
 Ričardas Noreika  
-  
 **IFF-6/6**  
-Trečiadienis, 9:00, dėstytoja Kristina Magylaitė
+  
+Paskaita trečiadienį 9:00, dėstytoja Kristina Magylaitė
