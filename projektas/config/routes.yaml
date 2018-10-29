@@ -1,0 +1,11 @@
+main:
+    path: /
+    controller: App\Controller\IndexController::show
+
+loginScreen:
+    path: /login
+    controller: App\Controller\LoginController::show
+
+registerScreen:
+    path: /register
+    controller: App\Controller\RegistrationController::show
