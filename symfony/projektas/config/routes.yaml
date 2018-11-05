@@ -9,3 +9,19 @@ loginScreen:
 registerScreen:
     path: /register
     controller: App\Controller\RegistrationController::show
+
+mainMenu:
+    path: /menu
+    controller: App\Controller\IndexController::afterLogin
+
+employeesList:
+    path: /employeesList
+    controller: App\Controller\EmployeesController::showList
+
+addEmployee:
+    path: /addEmployee
+    controller: App\Controller\EmployeesController::showAddEmployeeForm
+
+dayReport:
+    path: /dayReport
+    controller: App\Controller\EmployeesController::showDayReport

@@ -22,4 +22,11 @@ class IndexController extends AbstractController
             'kintamasis' => 'kazkoks random kinatamasis',
         ]);
     }
+
+    public function afterLogin()
+    {
+        return $this->render('mainPage.html.twig', [
+            'kintamasis' => 'kazkoks random kinatamasis',
+        ]);
+    }
 }

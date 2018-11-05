@@ -27,6 +27,21 @@ class User implements UserInterface
      */
     private $username;
     /**
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Assert\Type("string")
+     */
+    private $name;
+    /**
+     * @ORM\Column(name="surname", type="string", length=255, nullable=false)
+     * @Assert\Type("string")
+     */
+    private $surname;
+    /**
+     * @ORM\Column(name="personalCode", type="string", length=255, nullable=false, unique=true)
+     * @Assert\Type("string")
+     */
+    private $personalCode;
+    /**
      * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
      * @Assert\Email()
      */
@@ -66,6 +81,17 @@ class User implements UserInterface
      */
     private $lastLoginTime;
     /**
+     * @ORM\Column(name="salary", type="integer", nullable=false)
+     * @Assert\Type("int")
+     */
+    private $salary;
+    /**
+     * @ORM\Column(name="bankAccount", type="string", length=255, nullable=false, unique=true)
+     * @Assert\Type("string")
+     */
+    private $bankAccount;
+
+    /**
      * @return int
      */
     public function getId()
@@ -92,6 +118,48 @@ class User implements UserInterface
     public function setUsername(string $username)
     {
         $this->username = $username;
+    }
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+    /**
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+    /**
+     * @param string $surname
+     */
+    public function setSurname(string $surname)
+    {
+        $this->surname = $surname;
+    }
+    /**
+     * @return string
+     */
+    public function getPersonalCode()
+    {
+        return $this->personalCode;
+    }
+    /**
+     * @param string $personalCode
+     */
+    public function setPersonalCode(string $personalCode)
+    {
+        $this->personalCode = $personalCode;
     }
     /**
      * @return string
@@ -176,6 +244,34 @@ class User implements UserInterface
     public function setLastLoginTime(\DateTime $lastLoginTime)
     {
         $this->lastLoginTime = $lastLoginTime;
+    }
+    /**
+     * @return int
+     */
+    public function getSalary()
+    {
+        return $this->salary;
+    }
+    /**
+     * @param int $salary
+     */
+    public function setSalary(int $salary)
+    {
+        $this->salary = $salary;
+    }
+    /**
+     * @return string
+     */
+    public function getBankAccount()
+    {
+        return $this->bankAccount;
+    }
+    /**
+     * @param string $bankAccount
+     */
+    public function setBankAccount(string $bankAccount)
+    {
+        $this->bankAccount = $bankAccount;
     }
     public function getSalt()
     {
