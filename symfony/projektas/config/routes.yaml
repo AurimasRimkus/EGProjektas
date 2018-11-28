@@ -25,3 +25,20 @@ addEmployee:
 dayReport:
     path: /dayReport
     controller: App\Controller\EmployeesController::showDayReport
+    
+hotelsList:
+    path: /hotelsList
+    controller: App\Controller\HotelsController::showList
+    
+addHotel:
+    path: /addHotel
+    controller: App\Controller\HotelsController::showAddHotelForm
+    
+    
+hotelNetworkReport:
+    path: /hotelNetworkReport
+    controller: App\Controller\HotelsController::showHotelNetworkReport
+    
+networkEmployeesList:
+    path: /networkEmployeesList
+    controller: App\Controller\HotelsController::showNetworkEmployeesList
