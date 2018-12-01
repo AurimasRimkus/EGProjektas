@@ -9,9 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Item
  *
  * @ORM\Table(name="items")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"email"}, message="Šis e-mail adresas jau užimtas..")
- * @UniqueEntity(fields={"username"}, message="Šis vartotojo vardas jau užimtas.")
+ * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
  */
 class Item
 {

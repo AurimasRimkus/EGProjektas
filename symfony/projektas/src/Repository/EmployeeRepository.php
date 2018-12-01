@@ -2,11 +2,11 @@
 namespace App\Repository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\EntityRepository;
-use App\Entity\User;
+use App\Entity\Employee;
 /**
- * Class UserRepository
+ * Class EmployeeRepository
  * @package App\Repository
  */
-class UserRepository extends EntityRepository
+class EmployeeRepository extends EntityRepository
 {
 }

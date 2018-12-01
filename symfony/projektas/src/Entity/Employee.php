@@ -4,11 +4,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Table(name="cars")
- * @ORM\Entity(repositoryClass="App\Repository\CarRepository")
+ * @ORM\Table(name="employees")
+ * @ORM\Entity(repositoryClass="App\Repository\EmployeeRepository")
  */
 class Employee
 {
+    /**
+     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
     /**
      * @ORM\Column(type="int", nullable=false)
      * @ORM\Id
@@ -20,6 +26,14 @@ class Employee
     private $employeeType;
     public function __construct()
     {
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
     }
     public function getUserId()
     {

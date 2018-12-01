@@ -4,8 +4,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Table(name="cars")
- * @ORM\Entity(repositoryClass="App\Repository\CarRepository")
+ * @ORM\Table(name="dayReports")
+ * @ORM\Entity(repositoryClass="App\Repository\DayReportRepository")
  */
 class DayReport
 {

@@ -10,6 +10,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Hotel
 {
     /**
+     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    /**
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      * @Assert\Type("string")
      */
@@ -36,6 +42,14 @@ class Hotel
     private $website;
     public function __construct()
     {
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
     }
     /**
      * @return string
