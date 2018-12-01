@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('mainMenu') }}"><</a> Viešbučio darbuotojai <a href = "{{ path('addEmployee') }}">+</a> </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>ID</th>
+				<th>Vardas</th>
+				<th>Pavardė</th>
+				<th>Ištrinti</th>
+				<th>Redaguoti</th>
+			</tr>
+			<tr>
+				<td>50</td>
+				<td>Jill</td>
+				<td>Smith</td>
+				<td><a href="">X</a></td>
+				<td><a href="">E</a></td>
+			</tr>
+			<tr>
+				<td>94</td>
+				<td>Eve</td>
+				<td>Jackson</td>
+				<td><a href="">X</a></td>
+				<td><a href="">E</a></td>
+			</tr>
+		</table> 
+	</div>
+{% endblock %}

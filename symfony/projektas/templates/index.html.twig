@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1> EGP viešbučiai </h1>
+		Sveiki atvykę į EGP viešbučių tinklo informacinę sistemą <br /><br />
+		<div class="button"><a href = {{ path('loginScreen') }}>Prisijungti</a></div>
+		<div class="button"><a href = {{ path('registerScreen') }}>Registruotis</a></div>
+	</div>
+{% endblock %}
