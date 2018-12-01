@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('warehouse') }}"><</a> Užsakymų sąrašas <a href = "">+</a> </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>Užsakovas</th>
+				<th>Užsakymo data</th>
+				<th>Būsena/th>
+				<th>Ištrinti</th>
+				<th>Redaguoti</th>
+			</tr>
+			<tr>
+				<td>Daugirdo viešbutis</td>
+				<td>2018/08/09</td>
+				<td>Uždelstas</td>d>
+				<td><a href="">X</a></td>
+				<td><a href="">E</a></td>
+			</tr>
+			<tr>
+				<td>Saulės viešbutis</td>
+				<td>2018/12/03</td>
+				<td>Patvirtinitas</td>
+				<td><a href="">X</a></td>
+				<td><a href="">E</a></td>
+			</tr>
+			<tr>
+				<td>A bazės sandėlys</td>
+				<td>2018/12/03</td>
+				<td>Atmestas</td>
+				<td><a href="">X</a></td>
+				<td><a href="">E</a></td>
+			</tr>
+		</table> 
+	</div>
+{% endblock %}

@@ -42,3 +42,15 @@ hotelNetworkReport:
 networkEmployeesList:
     path: /networkEmployeesList
     controller: App\Controller\HotelsController::showNetworkEmployeesList
+warehouse:
+    path: /warehouse
+    controller: App\Controller\WarehouseController::showWarehouseMenu
+itemList:
+  path: /warehouseItems
+  controller: App\Controller\WarehouseController::showItemsList
+addItem:
+  path: /addItem
+  controller: App\Controller\WarehouseController::showAddItemForm
+ordersList:
+  path: /orders
+  controller: App\Controller\WarehouseController::showOrdersList
