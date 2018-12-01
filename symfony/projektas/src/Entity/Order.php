@@ -17,12 +17,25 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(name="amount", type="int", nullable=false)
-     * @Assert\Type("int")
+     * @ORM\Column(name="amount", type="integer", nullable=false)
+     * @Assert\Type("integer")
      */
     private $state;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Warehouse", inversedBy="orders")
+     * @ORM\JoinColumn(name="warehouse_id", referencedColumnName="id")
+     */
+    private $warehouse;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Item", inversedBy="orders")
+     * @ORM\JoinTable(name="orders_items")
+     */
+    private $items;
+
     public function __construct()
     {
+        $this->items = new ArrayCollection();
     }
     /**
      * @return int
@@ -51,6 +64,28 @@ class Order
     public function setState($state)
     {
         $this->state = $state;
+    }
+    /**
+     * @return mixed
+     */
+    public function getWarehouse()
+    {
+        return $this->warehouse;
+    }
+    /**
+     * @param mixed $profile
+     */
+    public function setWarehouse($warehouse)
+    {
+        $this->warehouse = $warehouse;
+    }
+    public function getItems()
+    {
+        return $this->items;
+    }
+    public function addItem($item)
+    {
+        $this->items->add($item);
     }
 
 }

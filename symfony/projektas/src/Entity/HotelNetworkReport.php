@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class HotelNetworkReport
 {
     /**
-     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -26,18 +26,18 @@ class HotelNetworkReport
      */
     private $comment;
     /**
-     * @ORM\Column(name="hotel", type="string", length=255, nullable=false)
+     * @ORM\Column(name="hotel", type="integer", length=255, nullable=false)
      * @Assert\Type("int")
      */
     private $hotel;
     /**
      * @ORM\Column(name="price", type="integer", nullable=false)
-     * @Assert\Type("int")
+     * @Assert\Type("integer")
      */
     private $price;
     /**
      * @ORM\Column(name="userId", type="integer", nullable=false)
-     * @Assert\Type("int")
+     * @Assert\Type("integer")
      */
     private $userId;
 

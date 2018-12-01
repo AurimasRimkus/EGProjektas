@@ -20,14 +20,14 @@ class LoginController extends Controller
         if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('index');
         }
-        $lastUsername = $authenticationUtils->getLastUsername();
-        if($lastUsername != null)
+        $lastEmail = $authenticationUtils->getLastUsername();
+        if($lastEmail != null)
         {
-            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username'=>$lastUsername]);
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email'=>$lastEmail]);
             if($user != null && $user->getIsDeleted())
             {
                 return $this->render('login.html.twig', array(
-                    'last_username' => $lastUsername,
+                    'last_username' => $lastEmail,
                     'error' => 'This user is banned.',
                 ));
             }
@@ -38,7 +38,7 @@ class LoginController extends Controller
             $error = "Wrong username or password";
         }
         return $this->render('login.html.twig', array(
-            'last_username' => $lastUsername,
+            'last_username' => $lastEmail,
             'error' => $error,
         ));
     }

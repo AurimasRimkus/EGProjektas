@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Warehouse
 {
     /**
-     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -30,6 +30,21 @@ class Warehouse
      * @Assert\Type("string")
      */
     private $contactPerson;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="warehouse")
+     */
+    private $orders;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Item", mappedBy="warehouse")
+     */
+    private $items;
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Hotel", inversedBy="warehouse")
+     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
+     */
+    private $hotel;
 
     public function __construct()
     {
@@ -83,6 +98,17 @@ class Warehouse
     public function setAddress($address)
     {
         $this->address = $address;
+    }
+    /**
+     * @return Collection|Orders[]
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+    public function addOrder(Order $order)
+    {
+        $this->orders->add($order);
     }
 
 }
