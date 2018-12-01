@@ -10,20 +10,49 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Employee
 {
     /**
-     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
     /**
-     * @ORM\Column(type="int", nullable=false)
-     * @ORM\Id
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
-    private $userId;
+    private $User;
     /**
-     * @ORM\Column(type="int", nullable=false)
+     * @ORM\Column(name="name", type="string", nullable=false)
+     */
+    private $name;
+    /**
+     * @ORM\Column(name="surname", type="string", nullable=false)
+     */
+    private $surname;
+    /**
+     * @ORM\Column(name="personalCode", type="string", nullable=false)
+     */
+    private $personalCode;
+    /**
+     * @ORM\Column(name="bankAccount", type="string", nullable=false)
+     */
+    private $bankAccount;
+    /**
+     * @ORM\Column(name="employeeType", type="integer", nullable=false)
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 4
+     * )
      */
     private $employeeType;
+    /**
+     * @ORM\Column(name="salary", type="float", nullable=false)
+     */
+    private $salary;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DayReport", mappedBy="employee")
+     */
+    private $dayReports;
+
     public function __construct()
     {
     }
@@ -34,14 +63,6 @@ class Employee
     public function setId($id)
     {
         $this->id = $id;
-    }
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
     }
     public function getEmployeeType(): ?int
     {

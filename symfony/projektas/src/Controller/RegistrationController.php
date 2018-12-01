@@ -32,8 +32,9 @@ class RegistrationController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
-            $password = $encoder->encodePassword($user, $user->getPassword());
+            $password = $encoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            /*
             $time = new \DateTime();
             $user->setRegistrationDate($time);
             $user->setLastLoginTime($time);
@@ -43,12 +44,12 @@ class RegistrationController extends Controller
             $send = $this->get('app.email_activation_service');
             $send->SendActivationEmail($user->getUsername(), $user->getEmail(), $user->getRegistrationToken(), $mailer); 
             // ? ^
-            $em->persist($profile);
+            */
             $em->persist($user);
             $em->flush();
             return $this->render('login.html.twig', array(
-                'success'=> "User ". $user->getUsername(). " was created.",
-                'last_username' => $user->getUsername()
+                'success'=> "User ". $user->getEmail(). " was created.",
+                'last_username' => $user->getEmail()
             ));
         }
         return $this->render('register.html.twig', array(

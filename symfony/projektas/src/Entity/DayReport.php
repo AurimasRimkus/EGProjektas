@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DayReport
 {
     /**
-     * @ORM\Column(name="id", type="int", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -27,14 +27,20 @@ class DayReport
     private $comment;
     /**
      * @ORM\Column(name="dayLength", type="integer", nullable=false)
-     * @Assert\Type("int")
+     * @Assert\Type("integer")
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 480,
+     *     minMessage = "Day must be at least 1 minute long",
+     *     maxMessage = "Day length can't exceed 480 minutes"
+     * )
      */
     private $dayLength;
     /**
-     * @ORM\Column(name="userId", type="integer", nullable=false)
-     * @Assert\Type("int")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="dayReports")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
-    private $userId;
+    private $employee;
 
     public function __construct()
     {
@@ -71,12 +77,12 @@ class DayReport
     {
         $this->dayLength = $dayLength;
     }
-    public function getUserId()
+    public function getUser() : User
     {
-        return $this->userId;
+        return $this->user;
     }
-    public function setUserId($userId)
+    public function setUser(User $user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
     }
 }

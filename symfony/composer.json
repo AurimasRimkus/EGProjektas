@@ -1,6 +1,10 @@
 {
     "require": {
         "ext-curl": "^7.2",
-        "facebook/webdriver": "^1.6"
+        "facebook/webdriver": "^1.6",
+        "symfony/orm-pack": "^1.0"
+    },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.9"
     }
 }
