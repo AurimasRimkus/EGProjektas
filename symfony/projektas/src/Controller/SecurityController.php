@@ -1,24 +1,35 @@
 <?php
-
+// src/AppBundle/Controller/SecurityController.php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\User;
 
-class SecurityController extends AbstractController
+class SecurityController extends Controller
 {
-    /**
-     * @Route("/loginas", name="app_login")
-     */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils, AuthorizationCheckerInterface $authChecker)
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render(
+            'login.html.twig',
+            array(
+                // last username entered by the user
+                'last_username' => $lastUsername,
+                'error'         => $error,
+            )
+        );
+    }
+    public function loginCheckAction()
+    {
+        // this controller will not be executed,
+        // as the route is handled by the Security system
     }
 }

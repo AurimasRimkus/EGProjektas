@@ -2,9 +2,13 @@ main:
     path: /
     controller: App\Controller\IndexController::show
 
-loginScreen:
+login:
     path: /login
-    controller: App\Controller\LoginController::show
+    controller: App\Controller\LoginController::login
+
+login_check:
+    path: /login_check
+    controller: App\Controller\SecurityController::loginCheckAction
 
 registerScreen:
     path: /register

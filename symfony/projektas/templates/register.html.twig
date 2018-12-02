@@ -10,6 +10,9 @@
         {{ parent() }}
         {{ form_start(form, {attr: {class: 'form-group'}}) }}
             <div class="col-sm-5 col-centered">
+                Username: {{ form_widget(form.username, { attr: {placeholder:'Useris'}}) }}<br />
+            </div>
+            <div class="col-sm-5 col-centered">
                 Email: {{ form_widget(form.email, { attr: {placeholder:'example@ktu.lt'}}) }}<br />
             </div>
             <div class="col-sm-5 col-centered">

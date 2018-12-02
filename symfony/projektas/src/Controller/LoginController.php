@@ -9,7 +9,6 @@ use App\Entity\User;
 class LoginController extends Controller
 {
     /**
-     * @Route("/login", name="login")
      * @param Request $request
      * @param AuthenticationUtils $authenticationUtils
      * @param AuthorizationCheckerInterface $authChecker
@@ -18,27 +17,29 @@ class LoginController extends Controller
     public function login(Request $request, AuthenticationUtils $authenticationUtils, AuthorizationCheckerInterface $authChecker)
     {
         if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('main');
         }
-        $lastEmail = $authenticationUtils->getLastUsername();
-        if($lastEmail != null)
+        $lastUsername = $authenticationUtils->getLastUsername();
+        //var_dump($lastUsername); die();
+        if($lastUsername != null)
         {
-            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email'=>$lastEmail]);
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email'=>$lastUsername]);
             if($user != null && $user->getIsDeleted())
             {
                 return $this->render('login.html.twig', array(
-                    'last_username' => $lastEmail,
+                    'last_username' => $lastUsername,
                     'error' => 'This user is banned.',
                 ));
             }
         }
         $error = $authenticationUtils->getLastAuthenticationError();
+        //var_dump($error); die();
         if ($error)
         {
             $error = "Wrong username or password";
         }
         return $this->render('login.html.twig', array(
-            'last_username' => $lastEmail,
+            'last_username' => $lastUsername,
             'error' => $error,
         ));
     }

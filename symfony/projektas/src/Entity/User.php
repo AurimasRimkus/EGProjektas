@@ -1,25 +1,37 @@
 <?php
+
 namespace App\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @ORM\Table(name="Users")
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
     /**
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
     /**
-     * @ORM\Column(name="email", type="string", nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $username;
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     /**
      * @Assert\NotBlank
      * @Assert\Length(max=4096)
@@ -37,33 +49,56 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User")
      */
     private $employeeAccount;
-    public function __construct()
-    {
-    }
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
+
     public function getEmail(): ?string
     {
         return $this->email;
     }
-    public function setEmail(string $email)
+
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
     }
-    public function getUsername(): ?string
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->email;
+        return (string) $this->username;
     }
-    public function setUsername(string $username)
+    public function setUsername(string $username): self
     {
-        $this->email = $username;
+        $this->username = $username;
+        return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     public function getPlainPassword()
     {
         return $this->plainPassword;
@@ -72,6 +107,7 @@ class User implements UserInterface
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+        return $this;
     }
 
     public function getPassword()
@@ -82,31 +118,27 @@ class User implements UserInterface
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-
-    public function getSalt()
-    {
-        // The bcrypt and argon2i algorithms don't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
+        return $this;
     }
 
     /**
-     * Returns employee type.
-     * 1 if client account, 2 if employee account, 0 if error.
-     * @return int
+     * @see UserInterface
      */
-    public function getUserType() 
+    public function getSalt()
     {
-        if(!empty($this->clientAccount)) {
-            return 1;
-        } else if (!empty($this->employeeAccount)) {
-            return 2;
-        } else {
-            return 0;
-        }
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    
     public function getEmployeeAccount() {
         return $this->employeeAccount;
     }
@@ -114,6 +146,7 @@ class User implements UserInterface
     public function setEmployeeAccount($employeeAccount) {
         if(empty($this->clientAccount)) {
             $this->employeeAccount = $employeeAccount;
+            return $this;
         } else {
             throw new \Exception('This is a client account, can\'t assign employee\'s account');
         }
@@ -126,16 +159,9 @@ class User implements UserInterface
     public function setClientAccount($clientAccount) {
         if(empty($this->employeeAccount)) {
             $this->clientAccount = $clientAccount;
+            return $this;
         } else {
             throw new \Exception('This is a employee account, can\'t assign client\'s account');
         }
-    }
-
-        public function getRoles()
-    {
-        return array ('ROLE_USER');
-    }
-    public function eraseCredentials()
-    {
     }
 }

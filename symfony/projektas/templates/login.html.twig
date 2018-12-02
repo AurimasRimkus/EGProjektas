@@ -7,6 +7,9 @@
     <h1>EGP - Login</h1>
     {# alerts rendering #}
     {{ parent() }}
+    {% if error is not empty %}
+        {{ error }}
+    {% endif %}
     <form action="{{ path('login') }}" method="post">
         <div class="form-group col-sm-5 col-centered">
             Username:
