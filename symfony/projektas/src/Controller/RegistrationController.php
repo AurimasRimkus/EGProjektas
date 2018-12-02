@@ -27,7 +27,7 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('index');
         }
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(SystemUserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
