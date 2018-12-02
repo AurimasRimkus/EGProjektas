@@ -45,6 +45,10 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User")
      */
     private $employeeAccount;
+    public function __construct() {
+        $this->clientAccount = new Client();
+        $this->employeeAccount = new Employee();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -123,30 +127,28 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    public function isEmployee() 
+    {
+        return !empty($this->employeeAccount);
+    }
     
     public function getEmployeeAccount() {
+        if(empty($this->employeeAccount)) $this->employeeAccount = new Employee();
         return $this->employeeAccount;
     }
 
     public function setEmployeeAccount($employeeAccount) {
-        if(empty($this->clientAccount)) {
-            $this->employeeAccount = $employeeAccount;
-            return $this;
-        } else {
-            throw new \Exception('This is a client account, can\'t assign employee\'s account');
-        }
+        $this->employeeAccount = $employeeAccount;
+        return $this;
     }
 
     public function getClientAccount() {
+        if(empty($this->clientAccount)) $this->clientAccount = new Client();
         return $this->clientAccount;
     }
 
     public function setClientAccount($clientAccount) {
-        if(empty($this->employeeAccount)) {
-            $this->clientAccount = $clientAccount;
-            return $this;
-        } else {
-            throw new \Exception('This is a employee account, can\'t assign client\'s account');
-        }
+        $this->clientAccount = $clientAccount;
+        return $this;
     }
 }

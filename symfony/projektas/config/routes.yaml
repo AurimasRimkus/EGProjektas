@@ -63,3 +63,7 @@ addItem:
 ordersList:
     path: /orders
     controller: App\Controller\WarehouseController::showOrdersList
+
+fillClientProfileForm:
+    path: /clientForm
+    controller: App\Controller\ClientsController::fillProfileForm

@@ -2,8 +2,12 @@
 {% block body %}
 	<div class = "mainScreen">
 		<h1> EGP viešbučiai </h1>
+		{% if app.user %}
+			Reiketu useri redirectint i meniu, nes jau logged in su emeilu {{ app.user.username }} . paredirectinam i route 'mainMenu'
+		{% else %}
 		Sveiki atvykę į EGP viešbučių tinklo informacinę sistemą <br /><br />
 		<div class="button"><a href = {{ path('login') }}>Prisijungti</a></div>
 		<div class="button"><a href = {{ path('registerScreen') }}>Registruotis</a></div>
+		{% endif %}
 	</div>
 {% endblock %}
