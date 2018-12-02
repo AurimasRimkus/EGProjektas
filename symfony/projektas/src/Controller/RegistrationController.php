@@ -27,7 +27,7 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('index');
         }
         $user = new User();
-        $form = $this->createForm(SystemUserType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -48,8 +48,8 @@ class RegistrationController extends Controller
             $em->persist($user);
             $em->flush();
             return $this->render('login.html.twig', array(
-                'success'=> "User ". $user->getEmail(). " was created.",
-                'last_username' => $user->getEmail()
+                'success'=> "User ". $user->getUsername(). " was created.",
+                'last_username' => $user->getUsername()
             ));
         }
         return $this->render('register.html.twig', array(

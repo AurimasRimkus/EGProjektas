@@ -19,13 +19,9 @@ class User implements UserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=true, name="email")
      */
     private $username;
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
 
     /**
      * @ORM\Column(type="json")
@@ -52,17 +48,6 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-        return $this;
     }
 
     /**

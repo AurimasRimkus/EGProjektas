@@ -7,13 +7,13 @@
     <h1>EGP - Login</h1>
     {# alerts rendering #}
     {{ parent() }}
-    {% if error is not empty %}
-        {{ error }}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <form action="{{ path('login') }}" method="post">
         <div class="form-group col-sm-5 col-centered">
-            Username:
-            <input type="text" class="form-control" placeholder="Username" id="username" name="_username" value="{{ last_username }}" />
+            Email:
+            <input type="text" class="form-control" placeholder="labas@egp.lt" id="username" name="_username" value="{{ last_username }}" />
         </div>
         <br />
         <div class="form-group col-sm-5 col-centered">

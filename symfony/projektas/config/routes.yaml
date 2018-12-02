@@ -4,11 +4,14 @@ main:
 
 login:
     path: /login
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\SecurityController::login
 
 login_check:
     path: /login_check
     controller: App\Controller\SecurityController::loginCheckAction
+
+logout:
+    path: /logout
 
 registerScreen:
     path: /register

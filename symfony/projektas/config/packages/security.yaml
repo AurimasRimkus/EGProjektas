@@ -4,6 +4,7 @@ security:
         our_db_provider:
             entity:
                 class: App\Entity\User
+                property: username
                 # the property to query by - e.g. username, email, etc
                 # if you're using multiple entity managers
                 # manager_name: customer
@@ -13,13 +14,12 @@ security:
             security: false
         main:
             anonymous: ~
-        default:
-                    anonymous: ~
-                    http_basic: ~
-                    form_login:
-                        login_path: login
-                        check_path: login
-
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path: /logout
+                target: /
             # activate different ways to authenticate
 
             # http_basic: true
