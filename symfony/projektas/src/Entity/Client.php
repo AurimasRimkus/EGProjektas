@@ -16,7 +16,7 @@ class Client
      */
     private $id;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="clientAccount")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
     private $User;
