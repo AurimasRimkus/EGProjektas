@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    EGP - Registration
+{% endblock %}
+{% block body %}
+    <div class = "mainScreen">
+        <h1>EGP - Registration</h1>
+        {# alerts rendering #}
+        {% set formErrors = form.vars.errors.form.getErrors(true) %}
+        {{ parent() }}
+        {{ form_start(form, {attr: {class: 'form-group'}}) }}
+            <div class="col-sm-5 col-centered">
+                Email: {{ form_widget(form.username, { attr: {placeholder:'jusu@email.lg'}}) }}<br />
+            </div>
+            <div class="col-sm-5 col-centered">
+                Password: {{ form_widget(form.plainPassword.first, { attr: {placeholder:'******'}}) }}<br />
+            </div>
+            <div class="col-sm-5 col-centered">
+                Repeat password: {{ form_widget(form.plainPassword.second, { attr: {placeholder:'******'}}) }}
+            </div>
+            <br />
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+        <a href = "{{ path('login') }}">Already have an account? Login</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+html{
+	background-image:url("http://cazare-maramures.com/wp-content/uploads/2018/06/getting-a-great-deal-on-hotels-inside-hotels-background.jpg");
+	padding: 50px 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainScreen {
+	width:70vw;
+	height: 40vw;
+	margin:auto;
+	text-align: center;
+	vertical-align:center;
+	border:1px solid black;
+	border-radius:20px;
+	background-color:rgba(255,253,208,0.7);
+}
+
+.button{
+	border:1px black solid;
+	margin:20px;
+	padding:3px 3px 3px 3px;
+	font-size: 20px;
+	border-radius: 5px;
+	display:inline;
+	background-color: rgb(255,253,208);
+}
+
+.button:hover{
+	background-color: rgb(255,255,255);
+}

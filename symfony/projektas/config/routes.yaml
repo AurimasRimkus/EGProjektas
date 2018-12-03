@@ -1,0 +1,69 @@
+main:
+    path: /
+    controller: App\Controller\IndexController::show
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+login_check:
+    path: /login_check
+    controller: App\Controller\SecurityController::loginCheckAction
+
+logout:
+    path: /logout
+
+registerScreen:
+    path: /register
+    controller: App\Controller\RegistrationController::show
+
+mainMenu:
+    path: /menu
+    controller: App\Controller\IndexController::afterLogin
+
+employeesList:
+    path: /employeesList
+    controller: App\Controller\EmployeesController::showList
+
+addEmployee:
+    path: /addEmployee
+    controller: App\Controller\EmployeesController::showAddEmployeeForm
+
+dayReport:
+    path: /dayReport
+    controller: App\Controller\EmployeesController::showDayReport
+
+hotelsList:
+    path: /hotelsList
+    controller: App\Controller\HotelsController::showList
+
+addHotel:
+    path: /addHotel
+    controller: App\Controller\HotelsController::showAddHotelForm
+
+hotelNetworkReport:
+    path: /hotelNetworkReport
+    controller: App\Controller\HotelsController::showHotelNetworkReport
+
+networkEmployeesList:
+    path: /networkEmployeesList
+    controller: App\Controller\HotelsController::showNetworkEmployeesList
+
+warehouse:
+    path: /warehouse
+    controller: App\Controller\WarehouseController::showWarehouseMenu
+itemList:
+    path: /warehouseItems
+    controller: App\Controller\WarehouseController::showItemsList
+
+addItem:
+    path: /addItem
+    controller: App\Controller\WarehouseController::showAddItemForm
+
+ordersList:
+    path: /orders
+    controller: App\Controller\WarehouseController::showOrdersList
+
+fillClientProfileForm:
+    path: /clientForm
+    controller: App\Controller\ClientsController::fillProfileForm

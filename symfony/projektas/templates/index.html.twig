@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1> EGP viešbučiai </h1>
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			Reiketu useri redirectint i meniu, nes jau logged in su emeilu {{ app.user.username }} . paredirectinam i route 'mainMenu' <br />
+			
+			<a href = {{ path('logout') }}>atsijungti</a></div>
+		{% else %}
+		Sveiki atvykę į EGP viešbučių tinklo informacinę sistemą <br /><br />
+		<div class="button"><a href = {{ path('login') }}>Prisijungti</a></div>
+		<div class="button"><a href = {{ path('registerScreen') }}>Registruotis</a></div>
+		{% endif %}
+	</div>
+{% endblock %}
