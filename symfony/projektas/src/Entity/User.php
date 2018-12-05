@@ -135,26 +135,36 @@ class User implements UserInterface
     }
     
     public function getEmployeeAccount() {
-        if(empty($this->employeeAccount)) $this->employeeAccount = new Employee();
+        if(empty($this->employeeAccount)) {
+            $this->employeeAccount = new Employee();
+        }
         return $this->employeeAccount;
     }
 
     public function setEmployeeAccount($employeeAccount) {
-        if (empty($employeeAccount)) $this->employeeAccount = new Employee();          
-        else $this->employeeAccount = $employeeAccount;
+        if (empty($employeeAccount)) {
+            $this->employeeAccount = new Employee();        
+        } else {
+            $this->employeeAccount = $employeeAccount;
+        }
         $this->employeeAccount->setUser($this);
         $this->clientAccount = null;
         return $this;
     }
 
     public function getClientAccount() {
-        if(empty($this->clientAccount)) $this->clientAccount = new Client();
+        if(empty($this->clientAccount)) { 
+            $this->clientAccount = new Client();
+        }
         return $this->clientAccount;
     }
 
     public function setClientAccount($clientAccount) {
-        if (empty($clientAccount)) $this->clientAccount = new Client();          
-        else $this->clientAccount = $clientAccount;
+        if (empty($clientAccount)) {
+            $this->clientAccount = new Client(); 
+        } else {
+            $this->clientAccount = $clientAccount;
+        }
         $this->clientAccount->setUser($this);
         $this->employeeAccount = null;
         return $this;
