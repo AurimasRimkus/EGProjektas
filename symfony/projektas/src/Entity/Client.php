@@ -17,27 +17,27 @@ class Client
     private $id;
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="clientAccount")
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $User;
     /**
-     * @ORM\Column(name="name", type="string", nullable=false)
+     * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
     /**
-     * @ORM\Column(name="surname", type="string", nullable=false)
+     * @ORM\Column(name="surname", type="string", nullable=true)
      */
     private $surname;
     /**
-     * @ORM\Column(name="personalCode", type="string", nullable=false)
+     * @ORM\Column(name="personalCode", type="string", nullable=true)
      */
     private $personalCode;
     /**
-     * @ORM\Column(name="creditCard", type="string", nullable=false)
+     * @ORM\Column(name="creditCard", type="string", nullable=true)
      */
     private $creditCard;
     /**
-     * @ORM\Column(name="phoneNumber", type="string", nullable=false)
+     * @ORM\Column(name="phoneNumber", type="string", nullable=true)
      */
     private $phoneNumber;
     /**

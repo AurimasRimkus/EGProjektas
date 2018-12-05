@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Entity\User;
+use App\Entity\Client;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,6 +46,8 @@ class RegistrationController extends Controller
             $send->SendActivationEmail($user->getUsername(), $user->getEmail(), $user->getRegistrationToken(), $mailer); 
             // ? ^
             */
+
+            $user->setClientAccount(null);
             $em->persist($user);
             $em->flush();
             return $this->render('login.html.twig', array(

@@ -19,7 +19,7 @@ class User implements UserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=180, unique=true, name="email")
+     * @ORM\Column(type="string", length=180, unique=true, name="email", nullable=false)
      */
     private $username;
 
@@ -38,11 +38,13 @@ class User implements UserInterface
      */
     private $password;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Client", mappedBy="User")
+     * @ORM\OneToOne(targetEntity="App\Entity\Client", mappedBy="User", cascade={"persist"})
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
      */
     private $clientAccount;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User")
+     * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User", cascade={"persist"})
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true)
      */
     private $employeeAccount;
     public function __construct() {
@@ -133,22 +135,38 @@ class User implements UserInterface
     }
     
     public function getEmployeeAccount() {
-        if(empty($this->employeeAccount)) $this->employeeAccount = new Employee();
+        if(empty($this->employeeAccount)) {
+            $this->employeeAccount = new Employee();
+        }
         return $this->employeeAccount;
     }
 
     public function setEmployeeAccount($employeeAccount) {
-        $this->employeeAccount = $employeeAccount;
+        if (empty($employeeAccount)) {
+            $this->employeeAccount = new Employee();        
+        } else {
+            $this->employeeAccount = $employeeAccount;
+        }
+        $this->employeeAccount->setUser($this);
+        $this->clientAccount = null;
         return $this;
     }
 
     public function getClientAccount() {
-        if(empty($this->clientAccount)) $this->clientAccount = new Client();
+        if(empty($this->clientAccount)) { 
+            $this->clientAccount = new Client();
+        }
         return $this->clientAccount;
     }
 
     public function setClientAccount($clientAccount) {
-        $this->clientAccount = $clientAccount;
+        if (empty($clientAccount)) {
+            $this->clientAccount = new Client(); 
+        } else {
+            $this->clientAccount = $clientAccount;
+        }
+        $this->clientAccount->setUser($this);
+        $this->employeeAccount = null;
         return $this;
     }
 }
