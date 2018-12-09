@@ -16,6 +16,9 @@ class EmployeeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('user', UserType::class, array(
+                'label' => false
+            ))
             ->add('name', TextType::class, array(
                 'label' => 'Darbuotojo vardas',
                 'attr' => array('placeholder' => '')
@@ -28,16 +31,12 @@ class EmployeeType extends AbstractType
                 'label' => 'Asmens kodas',
                 'attr' => array('placeholder' => '')
             ))
-            ->add('role', ChoiceType::class, array(
+            ->add('employeeType', ChoiceType::class, array(
                 'choices' => array(
                     'Sandelio darbuotojas' => '2',
                     'Administratorius' => '3',
                     'Kambarine' => '4'),
                 'label' => 'Darbuotojo tipas'
-            ))
-            ->add('email', EmailType::class, array(
-                'label' => 'E-paštas',
-                'attr' => array('placeholder' => '')
             ))
             ->add('salary', IntegerType::class, array(
                 'label' => 'Alga',
@@ -56,7 +55,7 @@ class EmployeeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            'data_class' => Employee::class,
         ));
     }
 }

@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Client;
 use App\Form\UserType;
+use App\Form\ClientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegistrationController extends Controller
 {
     /**
-     * @Route("/register", name="register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
      * @param AuthorizationCheckerInterface $authChecker
@@ -25,16 +25,16 @@ class RegistrationController extends Controller
     public function register(Request $request, UserPasswordEncoderInterface $encoder, AuthorizationCheckerInterface $authChecker, \Swift_Mailer $mailer)
     {
         if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('main');
         }
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $client = new Client();
+        $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
-            $password = $encoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+            $password = $encoder->encodePassword($client->getUser(), $client->getUser()->getPlainPassword());
+            $client->getUser()->setPassword($password);
             /*
             $time = new \DateTime();
             $user->setRegistrationDate($time);
@@ -46,17 +46,35 @@ class RegistrationController extends Controller
             $send->SendActivationEmail($user->getUsername(), $user->getEmail(), $user->getRegistrationToken(), $mailer); 
             // ? ^
             */
-
-            $user->setClientAccount(null);
-            $em->persist($user);
-            $em->flush();
-            return $this->render('login.html.twig', array(
-                'success'=> "User ". $user->getUsername(). " was created.",
-                'last_username' => $user->getUsername()
-            ));
+    
+            try {
+                $client->getUser()->setClientAccount($client);
+                $username = $client->getUser()->getUsername();
+                $em->persist($client->getUser());   
+                $em->persist($client);
+                
+                $em->flush();
+                return $this->render('login.html.twig', array(
+                    'success'=> "Account created succesfully",
+                    'last_username'=> $username,
+                    'error' => null
+                ));
+            }
+            catch (\Throwable $e) {
+                return $this->render('register.html.twig', array(
+                    'form'=>$form->createView(),
+                    'error'=>'User with identical email already exists',
+                 ));
+              } catch (\Exception $e) { 
+                return $this->render('register.html.twig', array(
+                    'form'=>$form->createView(),
+                    'error'=>'User with identical email already exists',
+                 ));
+              }
         }
         return $this->render('register.html.twig', array(
            'form'=>$form->createView(),
+           'error'=>null
         ));
     }
     /**

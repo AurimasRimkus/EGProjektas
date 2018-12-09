@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -16,17 +18,19 @@ class IndexController extends AbstractController
         );
     }
 
-    public function show()
+     /**
+     * @param AuthorizationCheckerInterface $authChecker
+     */
+    public function show(AuthorizationCheckerInterface $authChecker)
     {
-        return $this->render('index.html.twig', [
-            'kintamasis' => 'kazkoks random kinatamasis',
-        ]);
+        /*if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('main');
+        }*/
+        return $this->render('index.html.twig', []);
     }
 
     public function afterLogin()
     {
-        return $this->render('mainPage.html.twig', [
-            'kintamasis' => 'kazkoks random kinatamasis',
-        ]);
+        return $this->render('mainPage.html.twig', []);
     }
 }
