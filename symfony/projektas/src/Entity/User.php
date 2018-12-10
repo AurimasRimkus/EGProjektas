@@ -38,13 +38,13 @@ class User implements UserInterface
      */
     private $password;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Client", mappedBy="User", cascade={"persist"})
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Client", mappedBy="User", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $clientAccount;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User", cascade={"persist"})
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="User", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $employeeAccount;
     public function __construct() {

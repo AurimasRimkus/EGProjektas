@@ -16,8 +16,8 @@ class Employee
      */
     private $id;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount", cascade={"persist"})
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $User;
     /**

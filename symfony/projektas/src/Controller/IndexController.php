@@ -23,9 +23,9 @@ class IndexController extends AbstractController
      */
     public function show(AuthorizationCheckerInterface $authChecker)
     {
-        /*if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('main');
-        }*/
+        if ($authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('mainMenu');
+        }
         return $this->render('index.html.twig', []);
     }
 
