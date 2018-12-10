@@ -15,7 +15,11 @@ logout:
 
 registerScreen:
     path: /register
-    controller: App\Controller\RegistrationController::show
+    controller: App\Controller\RegistrationController::register
+
+addEmployeeScreen:
+    path: /addEmployee
+    controller: App\Controller\EmployeesController::showAddEmployeeForm
 
 mainMenu:
     path: /menu

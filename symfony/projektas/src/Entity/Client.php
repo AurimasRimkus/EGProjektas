@@ -16,7 +16,7 @@ class Client
      */
     private $id;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="clientAccount")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="clientAccount", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $User;

@@ -16,7 +16,7 @@ class Employee
      */
     private $id;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employeeAccount", cascade={"persist"})
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
     private $User;
@@ -64,6 +64,18 @@ class Employee
     {
         $this->id = $id;
     }
+
+    public function getUsername(): string
+    {
+        return (string) $this->getUser()->getUsername();
+    }
+    public function setUsername(string $username): self
+    {
+        $user = $this->getUser();
+        $user->setUsername($username);
+        return $this;
+    }
+
     public function getEmployeeType(): ?int
     {
         return $this->employeeType;
@@ -71,5 +83,59 @@ class Employee
     public function setEmployeeType(string $employeeType): self
     {
         $this->employeeType = $employeeType;
+        return $this;
+    }
+
+    public function getUser()
+    {
+        $user = $this->User;
+        if ($user == null) {
+            $user = new User();
+        }
+        return $this->User;
+    }
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+    }
+    public function getPersonalCode()
+    {
+        return $this->personalCode;
+    }
+    public function setPersonalCode($personalCode)
+    {
+        $this->personalCode = $personalCode;
+    }
+    public function getBankAccount()
+    {
+        return $this->bankAccount;
+    }
+    public function setBankAccount($bankAccount)
+    {
+        $this->bankAccount = $bankAccount;
+    }
+    public function getSalary()
+    {
+        return $this->salary;
+    }
+    public function setSalary($salary)
+    {
+        $this->salary = $salary;
     }
 }
