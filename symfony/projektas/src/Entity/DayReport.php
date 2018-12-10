@@ -52,14 +52,16 @@ class DayReport
     public function setId($id)
     {
         $this->id = $id;
+        return $this->id;
     }
     public function getReportDate(): ?DateTime
     {
         return $this->reportDate;
     }
-    public function setReportDate(string $reportDate): self
+    public function setReportDate(\DateTime $reportDate): self
     {
         $this->reportDate = $reportDate;
+        return $this;
     }
     public function getComment(): ?string
     {
@@ -68,21 +70,23 @@ class DayReport
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
+        return $this;
     }
     public function getDayLength(): ?int
     {
         return $this->dayLength;
     }
-    public function setDayLength(string $dayLength): self
+    public function setDayLength(int $dayLength): self
     {
         $this->dayLength = $dayLength;
+        return $this;
     }
-    public function getUser() : User
+    public function getEmployee() : Employee
     {
-        return $this->user;
+        return $this->employee;
     }
-    public function setUser(User $user)
+    public function setEmployee(Employee $employee)
     {
-        $this->user = $user;
+        $this->employee = $employee;
     }
 }

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('mainMenu') }}"><</a> Darbuotojų ataskaita </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>ID</th>
+				<th>Vardas</th>
+				<th>Pavardė</th>
+				<th>Išdirbta valandų</th>
+			</tr>
+			{% for employee in employees %}
+			<tr>
+				<td>{{ employee.getId() }}</td>
+				<td>{{ employee.getName() }}</td>
+				<td>{{ employee.getSurname() }}</td>
+				<td>{{ employee.getWorkedThisMonth() }}</td>
+			</tr>
+			{% endfor %}
+		</table> 
+	</div>
+{% endblock %}

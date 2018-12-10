@@ -138,4 +138,12 @@ class Employee
     {
         $this->salary = $salary;
     }
+    public function getWorkedThisMonth()
+    {
+        $total = 0;
+        foreach($this->dayReports as $report) {
+            $total += $report->getDayLength();
+        }
+        return $total;
+    }
 }

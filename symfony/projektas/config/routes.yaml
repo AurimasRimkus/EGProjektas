@@ -71,3 +71,7 @@ ordersList:
 fillClientProfileForm:
     path: /clientForm
     controller: App\Controller\ClientsController::fillProfileForm
+
+monthlyReport:
+    path: /monthlyReport
+    controller: App\Controller\EmployeesController::report

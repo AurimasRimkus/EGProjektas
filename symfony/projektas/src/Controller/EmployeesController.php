@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class EmployeesController extends AbstractController
@@ -43,13 +44,26 @@ class EmployeesController extends AbstractController
         ]);
     }
 */
-    public function showDayReport()
-    {
-        $newDayReport = new DayReport();
-        $form = $this->createForm(DayReportType::class, $newDayReport);
-        return $this->render('newDayReport.html.twig', [
-            'form' => $form->createView()
-        ]);
+    public function showDayReport(Request $request, UserPasswordEncoderInterface $encoder, AuthorizationCheckerInterface $authChecker) {
+        $dayReport = new DayReport();
+        $form = $this->createForm(DayReportType::class, $dayReport);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $today = new \DateTime();
+            $dayReport->setReportDate($today);
+            $dayReport->setEmployee($this->getUser()->getEmployeeAccount());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($dayReport);
+            $em->flush();
+            return $this->redirectToRoute('dayReport');
+        }
+        return $this->render('newDayReport.html.twig', array(
+           'form'=>$form->createView(),
+           'error'=>null,
+           'success'=>null
+        ));
     }
 
     public function showAddEmployeeForm(Request $request, UserPasswordEncoderInterface $encoder, AuthorizationCheckerInterface $authChecker, \Swift_Mailer $mailer) {
@@ -162,5 +176,10 @@ class EmployeesController extends AbstractController
             'form' => $form->createView(),
             'action' => "Edit",
         ));
+    }
+
+    public function report() {
+        $allEmployees = $this->getDoctrine()->getRepository(Employee::class)->findAll();
+        return $this->render('monthlyReport.html.twig', ['employees' => $allEmployees]);
     }
 }
