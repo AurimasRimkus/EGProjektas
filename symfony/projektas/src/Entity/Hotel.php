@@ -145,4 +145,13 @@ class Hotel
     {
         $this->rooms->add($room);
     }
+
+    public function getServices()
+    {
+        return $this->services;
+    }
+    public function addService($service)
+    {
+        $this->services->add($service);
+    }
 }

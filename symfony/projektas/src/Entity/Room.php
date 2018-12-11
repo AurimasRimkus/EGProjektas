@@ -31,7 +31,7 @@ class Room
      */
     private $kaina;
     /**
-     * @ORM\ManytoOne(targetEntity="App\Entity\Reservation", inversedBy="room")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="reservation")
      */
     private $reservations;
     /**

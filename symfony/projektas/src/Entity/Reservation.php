@@ -116,8 +116,30 @@ class Reservation
     {
         return $this->services;
     }
+
+    public function getServiceNames()
+    {
+        $services = array();
+
+        foreach ($this->services as $service)
+        {
+            $services[] = $service->getName();
+        } 
+        return $services;
+    }
+
+    public function setServices($services)
+    {
+        return $this->services = $services;
+    }
+
     public function addService($service)
     {
-        $this->services->add($service);
+        $this->services[] = $service;
+    }
+
+    public function removeService($service)
+    {
+        $this->services->remove($service);
     }
 }

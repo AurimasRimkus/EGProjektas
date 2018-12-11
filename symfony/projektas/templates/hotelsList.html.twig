@@ -9,36 +9,16 @@
 				<th>Reitingas</th>
 				<th>Adresas</th>
 				<th>Tinklapis</th>
-				<th>Ištrinti</th>
-				<th>Redaguoti</th>
 			</tr>
+			{% for hotel in hotels %}
 			<tr>
-				<td>Daugirdas</td>
-				<td>303485437</td>
-				<td>4,1</td>
-				<td>Daugirdo g. 10</td>
-				<td><a href="hhtps://www.daugird.lt">Daugird.lt</a></td>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
+				<td>{{ hotel.getName() }}</td>
+				<td>{{ hotel.getCompanyCode() }}</td>
+				<td>{{ hotel.getRating() }}</td>
+				<td>{{ hotel.getAddress() }}</td>
+				<td>{{ hotel.getWebsite() }}</td>
 			</tr>
-			<tr>
-				<td>Narutis</td>
-				<td>308968437</td>
-				<td>4,9</td>
-				<td>Kovo g. 5</td>
-				<td><a href="hhtps://www.narutishotel.lt">Narutishotel.lt</a></td>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
-			</tr>
-			<tr>
-				<td>Kaunas city</td>
-				<td>303485437</td>
-				<td>5,0</td>
-				<td>Centro g. 1</td>
-				<td><a href="hhtps://www.kaunascityhot.lt">Kaunascity.lt</a></td>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
-			</tr>
+			{% endfor %}
 		</table> 
 	</div>
 {% endblock %}

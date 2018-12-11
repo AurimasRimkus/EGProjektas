@@ -7,9 +7,10 @@
 			<a href = "">Rašyti atsiliepimą</a><br />
 			<a href = "">Pranešti apie bėdą kambaryje</a><br />
 			<a href = "">Papildomos paslaugos</a><br /><br />
-			<strong>Kambarių meniu</strong> <br />
-			<a href = "">Kambario rezervacija</a><br /><br />
-		{% else %}
+			<strong>Rezervacijos</strong> <br />
+			<a href = "{{ path('reservationList') }}">Rezervacijų sąrašas</a><br />
+			<a href = "{{ path('addReservation') }}">Kambario rezervacija</a><br /><br />
+		
 		<strong>Darbuotojų meniu</strong> <br /> <br />
 		<a href = "{{ path('employeesList') }}">Darbuotojų sąrašas</a><br />
 		<a href = "{{ path('monthlyReport') }}">Mėnesio ataskaita</a><br />
@@ -17,9 +18,13 @@
 		<strong>Sandėlių valdymas</strong> <br />
 		<a href = "">Sandėlio informacija</a><br /><br />
 		<strong>Kambarių meniu</strong> <br />
-		<a href = "">Kambario kūrimas</a><br />
+		<a href = "{{ path('addRoom') }}">Kambario kūrimas</a><br />
 		<a href = "">Kambarių paieška</a><br />
-		<a href = "">Kambarių duomenys</a><br />
+		<a href = "{{ path('roomList') }}">Kambarių duomenys</a><br /><br />
+		<strong>Viešbučio valdymas</strong> <br />
+		<a href = "{{ path('servicesList') }}">Papildomos paslaugos</a><br />
+		<a href = "{{ path('discountsList') }}">Nuolaidos</a><br />
+		<br />
 		<strong>Viešbučių tinklo administratoriaus meniu</strong><br />
 		<a href = "{{ path('hotelNetworkReport') }}">Viešbučių tinklo ataskaita</a><br />
 		<a href = "{{ path('networkEmployeesList') }}">Viešbučių tinklo darbuotojai</a><br />
