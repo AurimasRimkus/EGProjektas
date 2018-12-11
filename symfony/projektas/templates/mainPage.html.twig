@@ -2,24 +2,28 @@
 {% block body %}
 	<div class = "mainScreen">
 		<h1> Meniu </h1>
+		{% if app.user.isEmployee() == false %}
+			<strong>Vartotojų dalies valdymas</strong> <br />
+			<a href = "">Rašyti atsiliepimą</a><br />
+			<a href = "">Pranešti apie bėdą kambaryje</a><br />
+			<a href = "">Papildomos paslaugos</a><br /><br />
+			<strong>Kambarių meniu</strong> <br />
+			<a href = "">Kambario rezervacija</a><br /><br />
+		{% else %}
 		<strong>Darbuotojų meniu</strong> <br /> <br />
 		<a href = "{{ path('employeesList') }}">Darbuotojų sąrašas</a><br />
 		<a href = "{{ path('monthlyReport') }}">Mėnesio ataskaita</a><br />
 		<a href = "{{ path('dayReport') }}">Dienos ataskaita</a><br /><br />
 		<strong>Sandėlių valdymas</strong> <br />
 		<a href = "">Sandėlio informacija</a><br /><br />
-		<strong>Vartotojų dalies valdymas</strong> <br />
-		<a href = "">Vartotojo dalies valdymas</a><br />
-		<a href = "">Rašyti atsiliepimą</a><br />
-		<a href = "">Pranešti apie bėdą kambaryje</a><br />
-		<a href = "">Papildomos paslaugos</a><br /><br />
 		<strong>Kambarių meniu</strong> <br />
+		<a href = "">Kambario kūrimas</a><br />
 		<a href = "">Kambarių paieška</a><br />
 		<a href = "">Kambarių duomenys</a><br />
-		<a href = "">Kambario rezervacija</a><br /><br />
 		<strong>Viešbučių tinklo administratoriaus meniu</strong><br />
 		<a href = "{{ path('hotelNetworkReport') }}">Viešbučių tinklo ataskaita</a><br />
 		<a href = "{{ path('networkEmployeesList') }}">Viešbučių tinklo darbuotojai</a><br />
 		<a href = "{{ path('hotelsList') }}">Viešbučių tinklo viešbučiai</a><br />
+		{% endif %} 
 	</div>
 {% endblock %}
