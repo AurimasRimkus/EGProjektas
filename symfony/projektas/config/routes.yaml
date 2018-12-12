@@ -75,3 +75,11 @@ fillClientProfileForm:
 monthlyReport:
     path: /monthlyReport
     controller: App\Controller\EmployeesController::report
+
+monthlyWarehouseReport:
+    path: /monthlyWarehouseReport
+    controller: App\Controller\WarehouseController::report
+
+addOrder:
+    path: /addOrder
+    controller: App\Controller\WarehouseController::showAddOrderForm

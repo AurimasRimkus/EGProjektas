@@ -22,7 +22,7 @@ class ItemType extends AbstractType
                 'label' => 'Daikto pavadinimas',
                 'attr' => array('placeholder' => '')
             ))
-            ->add('amount', TextType::class, array(
+            ->add('amount', IntegerType::class, array(
                 'label' => 'Likutis',
                 'attr' => array('placeholder' => '')
             ))

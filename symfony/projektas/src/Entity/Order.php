@@ -17,8 +17,11 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(name="amount", type="integer", nullable=false)
+     * @ORM\Column(name="state", type="integer", nullable=false)
      * @Assert\Type("integer")
+     * * @Assert\LessThan(
+     *     value = 4
+     * )
      */
     private $state;
     /**
@@ -73,7 +76,7 @@ class Order
         return $this->warehouse;
     }
     /**
-     * @param mixed $profile
+     * @param int $warehouse
      */
     public function setWarehouse($warehouse)
     {
@@ -86,6 +89,14 @@ class Order
     public function addItem($item)
     {
         $this->items->add($item);
+    }
+    public function getUsedItems()
+    {
+        $total = 0;
+        foreach($this->items as $item) {
+            $total += 1;
+        }
+        return $total;
     }
 
 }

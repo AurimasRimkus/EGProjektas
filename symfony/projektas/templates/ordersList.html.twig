@@ -1,36 +1,26 @@
 {% extends "base.html.twig" %}
 {% block body %}
 	<div class = "mainScreen">
-		<h1><a href = "{{ path('warehouse') }}"><</a> Užsakymų sąrašas <a href = "">+</a> </h1> <br />
+		<h1><a href = "{{ path('warehouse') }}"><</a> Užsakymų sąrašas <a href = "{{ path('addOrder') }}">+</a> </h1> <br />
 		<table style="width:100%">
 			<tr>
-				<th>Užsakovas</th>
-				<th>Užsakymo data</th>
-				<th>Būsena/th>
-				<th>Ištrinti</th>
-				<th>Redaguoti</th>
+				<th>ID</th>
+				<th>Būsena</th>
+				<th>Atšaukti</th>
+				<th>Keisti būseną</th>
+				<th>Pridėti daiktą</th>
+				<th>Peržiūrėti</th>
 			</tr>
-			<tr>
-				<td>Daugirdo viešbutis</td>
-				<td>2018/08/09</td>
-				<td>Uždelstas</td>d>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
-			</tr>
-			<tr>
-				<td>Saulės viešbutis</td>
-				<td>2018/12/03</td>
-				<td>Patvirtinitas</td>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
-			</tr>
-			<tr>
-				<td>A bazės sandėlys</td>
-				<td>2018/12/03</td>
-				<td>Atmestas</td>
-				<td><a href="">X</a></td>
-				<td><a href="">E</a></td>
-			</tr>
+            {% for order in orders %}
+				<tr>
+					<td>{{ order.getId() }}</td>
+					<td>{{ order.getState() }}</td>
+					<td><a href = "/deleteOrder/{{ order.getId() }}"}}>X</a></td>
+					<td><a href = "/editOrder/{{ order.getId() }}"}}>E</a></td>
+					<td><a href = "/useForOrder/{{ order.getId() }}"}}>E</a></td>
+					<td><a href = "/viewOrderItems/{{ order.getId() }}"}}>E</a></td>
+				</tr>
+            {% endfor %}
 		</table>
 	</div>
 {% endblock %}

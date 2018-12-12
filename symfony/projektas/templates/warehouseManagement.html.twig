@@ -4,14 +4,12 @@
 		<h1> Meniu </h1>
 		<strong>Daiktų meniu</strong> <br /> <br />
 		<a href = "{{ path('itemList') }}">Sandėlio inventoriaus sąrašas</a><br />
-		<a href = "{{ path('addItem') }}">Pridėti daiktą</a><br />
-		<a href = "">Nurašyti daiktą</a><br />
 		<a href = "">Panaudoti daiktą užsakymui</a><br /><br />
 		<strong>Užsakymų valdymas</strong> <br />
-		<a href = "{{ path('ordersList') }}">Pakeisti viešbučio užsakymo būseną</a><br />
+		<a href = "{{ path('ordersList') }}">Užsakymų sąrašo peržiūra</a><br />
 		<a href = "">Pateikti užsakymą sandėlio papildymui</a><br /><br />
 		<strong>Sandėlio ataskaitos</strong> <br />
-		<a href = "">Sandėlio mėnėsio ataskaitos sudarymas</a><br />
+		<a href = "{{ path('monthlyWarehouseReport') }}">Sandėlio mėnėsio ataskaitos sudarymas</a><br />
 
 	</div>
 {% endblock %}
