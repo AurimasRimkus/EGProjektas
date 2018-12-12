@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('mainMenu') }}"><</a> Papildomos Paslaugos <a href = "{{ path('addService') }}">+</a> </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>Paslaugos #</th>
+				<th>Viešbučio pavadinimas</th>
+				<th>Pavadinimas</th>
+				<th>Kaina</th>
+			</tr>
+			{% for service in services %}
+			<tr>
+				<td>{{ service.getId() }}</td>
+				<td>{{ service.getHotel().getName() }}</td>
+				<td>{{ service.getName() }}</td>
+				<td>{{ service.getPrice() }}</td>
+			</tr>
+			{% endfor %}
+		</table> 
+	</div>
+{% endblock %}

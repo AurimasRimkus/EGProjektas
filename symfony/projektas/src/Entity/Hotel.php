@@ -44,6 +44,17 @@ class Hotel
      * @ORM\OneToOne(targetEntity="App\Entity\Warehouse", mappedBy="hotel")
      */
     private $warehouse;
+     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Room", mappedBy="hotel")
+     * @ORM\JoinColumn(name="room_id", referencedColumnName="id")
+     */
+    private $rooms;
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="hotel")
+     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     */
+    private $services;
+
     public function __construct()
     {
     }
@@ -124,5 +135,23 @@ class Hotel
     public function setWebsite($website)
     {
         $this->website = $website;
+    }
+
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+    public function addRoom($room)
+    {
+        $this->rooms->add($room);
+    }
+
+    public function getServices()
+    {
+        return $this->services;
+    }
+    public function addService($service)
+    {
+        $this->services->add($service);
     }
 }

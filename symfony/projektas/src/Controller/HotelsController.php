@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Hotel;
 use App\Form\HotelNetworkReportType;
 use App\Form\HotelType;
@@ -21,7 +22,9 @@ class HotelsController extends AbstractController
 
     public function showList()
     {
+        $allHotels = $this->getDoctrine()->getRepository(Hotel::class)->findAll();
         return $this->render('hotelsList.html.twig', [
+            'hotels' => $allHotels,
         ]);
     }
 	
@@ -31,13 +34,26 @@ class HotelsController extends AbstractController
         ]);
     }
 
-    public function showAddHotelForm()
+    public function showAddHotelForm(Request $request)
     {
         $newHotel = new Hotel();
         $form = $this->createForm(HotelType::class, $newHotel);
-        return $this->render('hotelsForm.html.twig', [
-            'form' => $form->createView()
-        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newHotel);
+            
+            $em->flush();
+            return $this->render('hotelsList.html.twig', array(
+                'success'=> "Account created succesfully",
+                'error' => null
+            ));
+        }
+        return $this->render('hotelsForm.html.twig', array(
+           'form'=>$form->createView(),
+           'error'=>null
+        ));
     }
 	
     public function showHotelNetworkReport()
