@@ -1,6 +1,6 @@
 <?php
 namespace App\Form;
-use App\Entity\Item;
+use App\Entity\Order;
 use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,25 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-class ItemType extends AbstractType
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+class OrderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array(
-                'label' => 'Daikto pavadinimas',
-                'attr' => array('placeholder' => '')
-            ))
-            ->add('amount', IntegerType::class, array(
-                'label' => 'Likutis',
-                'attr' => array('placeholder' => '')
-            ))
-            ->add('expirationDate', DateType::class, array(
-                'label' => 'Galiojimo data',
+            ->add('state', IntegerType::class, array(
+                'label' => 'Užsakymo būsena',
                 'attr' => array('placeholder' => '')
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => 'Saugoti daiktą'
+                'label' => 'Pakeisti būseną'
                 //'attr' => array('id' => 'carTypeSubmit')
             ))
         ;
@@ -39,7 +32,7 @@ class ItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Item::class,
+            'data_class' => Order::class,
         ));
     }
 }

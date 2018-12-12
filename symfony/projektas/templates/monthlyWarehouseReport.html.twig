@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('warehouse') }}"><</a> Sandėlio ataskaita </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>Užsakymas</th>
+				<th>Būsena</th>
+				<th>Užsakymui panaudota daiktų</th>
+			</tr>
+			{% for order in orders %}
+			<tr>
+				<td>{{ order.getId() }}</td>
+				<td>{{ order.getState() }}</td>
+				<td>{{ order.getUsedItems() }}</td>
+			</tr>
+			{% endfor %}
+		</table> 
+	</div>
+{% endblock %}

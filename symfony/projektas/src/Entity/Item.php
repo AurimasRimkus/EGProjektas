@@ -73,6 +73,10 @@ class Item
     {
         $this->amount = $amount;
     }
+    public function reduceAmount($amount)
+    {
+        $this->amount -= $amount;
+    }
     public function getOrders()
     {
         return $this->orders;
@@ -81,11 +85,11 @@ class Item
     {
         $this->orders->add($order);
     }
-    public function getExpirationDate(): ?DateTime
+    public function getExpirationDate()
     {
-        return $this->expirationDate;
+            return $this->expirationDate;
     }
-    public function setExpirationDate(string $expirationDate): self
+    public function setExpirationDate($expirationDate)
     {
         $this->expirationDate = $expirationDate;
     }

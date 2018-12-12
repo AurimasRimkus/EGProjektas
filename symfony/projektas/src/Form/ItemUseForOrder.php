@@ -13,25 +13,25 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-class ItemType extends AbstractType
+class ItemUseForOrder extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+           ->add('id', IntegerType::class, array(
+                'label' => 'Daikto ID',
+                'attr' => array('placeholder' => '')
+            ))
             ->add('name', TextType::class, array(
                 'label' => 'Daikto pavadinimas',
                 'attr' => array('placeholder' => '')
             ))
             ->add('amount', IntegerType::class, array(
-                'label' => 'Likutis',
+                'label' => 'Kiek priskiriame užsakymui',
                 'attr' => array('placeholder' => '')
             ))
-            ->add('expirationDate', DateType::class, array(
-                'label' => 'Galiojimo data',
-                'attr' => array('placeholder' => '')
-            ))
-            ->add('submit', SubmitType::class, array(
-                'label' => 'Saugoti daiktą'
+           ->add('submit', SubmitType::class, array(
+                'label' => 'Pridėti prie užsakymo'
                 //'attr' => array('id' => 'carTypeSubmit')
             ))
         ;
