@@ -53,6 +53,34 @@ networkEmployeesList:
     path: /networkEmployeesList
     controller: App\Controller\HotelsController::showNetworkEmployeesList
 
+roomList:
+    path: /roomList
+    controller: App\Controller\RoomsController::showList
+
+addRoom:
+    path: /addRoom
+    controller: App\Controller\RoomsController::showAddRoomForm
+
+addReservation:
+    path: /addReservation
+    controller: App\Controller\ReservationController::showAddReservation
+
+reservationList:
+    path: /reservationList
+    controller: App\Controller\ReservationController::showList
+
+servicesList:
+    path: /servicesList
+    controller: App\Controller\ServiceController::showList
+
+addService:
+    path: /addService
+    controller: App\Controller\ServiceController::showAddService
+
+discountsList:
+    path: /servicesList
+    controller: App\Controller\ServiceController::showList
+
 warehouse:
     path: /warehouse
     controller: App\Controller\WarehouseController::showWarehouseMenu

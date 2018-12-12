@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('mainMenu') }}"><</a> Rezervacijos <a href = "{{ path('addReservation') }}">+</a> </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>Viešbučio pavadinimas</th>
+				<th>Kaina</th>
+				<th>Pradžia</th>
+				<th>Pabaiga</th>
+				<th>Paslaugos</th>
+			</tr>
+			{% for reservation in reservations %}
+			<tr>
+				<td>{{ reservation.getRoom().getHotel().getName() }}</td>
+				<td>{{ reservation.getRoom().getKaina() }}</td>
+				<td>{{ reservation.getStart().format('Y-m-d') }}</td>
+				<td>{{ reservation.getEnd().format('Y-m-d') }}</td>
+				<td>{{ reservation.getServiceNames()|join(', ') }}</td>
+			</tr>
+			{% endfor %}
+		</table> 
+	</div>
+{% endblock %}
