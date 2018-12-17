@@ -8,6 +8,7 @@
 				<th>Viešbučio pavadinimas</th>
 				<th>Būsena</th>
 				<th>Kaina</th>
+				<th>Trinti</th>
 			</tr>
 			{% for room in rooms %}
 			<tr>
@@ -15,6 +16,7 @@
 				<td>{{ room.getHotel().getName() }}</td>
 				<td>{{ room.getStatus() }}</td>
 				<td>{{ room.getKaina() }}</td>
+				<td><a href = "/deleteRoom/{{ room.getId() }}"}}>X</a></td>
 			</tr>
 			{% endfor %}
 		</table> 

@@ -45,13 +45,11 @@ class Hotel
      */
     private $warehouse;
      /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", mappedBy="hotel")
-     * @ORM\JoinColumn(name="room_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Room", mappedBy="hotel")
      */
     private $rooms;
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="hotel")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $services;
 

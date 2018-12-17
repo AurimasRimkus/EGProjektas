@@ -13,7 +13,7 @@
 			{% for reservation in reservations %}
 			<tr>
 				<td>{{ reservation.getRoom().getHotel().getName() }}</td>
-				<td>{{ reservation.getRoom().getKaina() }}</td>
+				<td>{{ reservation.getTotalPrice() }}</td>
 				<td>{{ reservation.getStart().format('Y-m-d') }}</td>
 				<td>{{ reservation.getEnd().format('Y-m-d') }}</td>
 				<td>{{ reservation.getServiceNames()|join(', ') }}</td>

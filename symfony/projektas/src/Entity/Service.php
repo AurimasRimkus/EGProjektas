@@ -25,12 +25,12 @@ class Service
      */
     private $name;
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Reservation", mappedBy="reservation")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Reservation", mappedBy="services")
      * @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
      */
     private $reservations;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="hotel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="services")
      * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      */
     private $hotel;

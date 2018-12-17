@@ -24,9 +24,13 @@ class Discount
      */
     private $value;
     /**
-     * @ORM\OnetoOne(targetEntity="App\Entity\Reservation", mappedBy="reservation")
+     * @ORM\Column(name="code", type="string", nullable=false)
      */
-    private $reservation;
+    private $code;
+    /**
+     * @ORM\OnetoMany(targetEntity="App\Entity\Reservation", mappedBy="discount")
+     */
+    private $reservations;
 
     public function __construct()
     {
@@ -53,13 +57,33 @@ class Discount
     {
         $this->value = $value;
     }
-    public function getReservation()
+
+    public function getCode()
     {
-        return $this->reservation;
+        return $this->code;
     }
-    public function setReservation($reservation)
+    /**
+     * @param int $rating
+     */
+    public function setCode($code)
     {
-        $this->reservation = $reservation;
+        $this->code = $code;
+    }
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+    public function setReservations($reservations)
+    {
+        $this->reservations = $reservations;
+    }
+    public function addReservation($reservation)
+    {
+        $this->reservations[] = $reservation;
     }
 
+    public function removeReservation($reservation)
+    {
+        $this->reservations->remove($reservation);
+    }
 }

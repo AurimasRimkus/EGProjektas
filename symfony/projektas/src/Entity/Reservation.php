@@ -24,27 +24,26 @@ class Reservation
      */
     private $end;
     /**
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="reservations")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Room", inversedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Room", inversedBy="reservations")
      * @ORM\JoinColumn(name="room_id", referencedColumnName="id")
      */
     private $room;
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Review", inversedBy="reservation")
-     * @ORM\JoinColumn(name="review_id", referencedColumnName="id")
      */
     private $review;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Discount", inversedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Discount", inversedBy="reservations")
      * @ORM\JoinColumn(name="discount_id", referencedColumnName="id")
      */
     private $discount;
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="reservation")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="reservations")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $services;
@@ -142,4 +141,21 @@ class Reservation
     {
         $this->services->remove($service);
     }
+
+    public function getTotalPrice()
+    {
+        $price = $this->room->getKaina();
+
+        foreach ($this->services as $service)
+        {
+            $price += $service->getPrice();
+        } 
+
+        if ($this->discount != null)
+        {
+            $price -= $this->discount->getValue();
+        }
+        return $price;
+    }
+
 }

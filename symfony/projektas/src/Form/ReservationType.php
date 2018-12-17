@@ -47,7 +47,7 @@ class ReservationType extends AbstractType
                 'mapped' => false
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => 'Saugoti kambarį'
+                'label' => 'Saugoti rezervaciją'
             ))
         ;
     }

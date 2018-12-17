@@ -26,6 +26,13 @@ class RoomsController extends AbstractController
         ]);
     }
 
+    public function deleteRoom($id)
+    {
+        $room = $this->getDoctrine()->getRepository(Room::class)->find($id);
+        $this->getDoctrine()->getManager()->remove($room);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('roomList');
+    }
 
     public function showAddRoomForm(Request $request)
     {
@@ -39,10 +46,7 @@ class RoomsController extends AbstractController
             $em->persist($newRoom);
             
             $em->flush();
-            return $this->render('mainPage.html.twig', array(
-                'success'=> "Room created successfully",
-                'error' => null
-            ));
+            return $this->redirectToRoute('roomList');
         }
         return $this->render('addRoomForm.html.twig', [
             'form' => $form->createView()

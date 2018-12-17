@@ -61,6 +61,10 @@ addRoom:
     path: /addRoom
     controller: App\Controller\RoomsController::showAddRoomForm
 
+deleteRoom:
+    path: /deleteRoom/{id}
+    controller: App\Controller\RoomsController::deleteRoom
+
 addReservation:
     path: /addReservation
     controller: App\Controller\ReservationController::showAddReservation
@@ -78,8 +82,16 @@ addService:
     controller: App\Controller\ServiceController::showAddService
 
 discountsList:
-    path: /servicesList
-    controller: App\Controller\ServiceController::showList
+    path: /discountsList
+    controller: App\Controller\DiscountController::showList
+
+addDiscount:
+    path: /addDiscount
+    controller: App\Controller\DiscountController::showAddDiscount
+
+deleteDiscount:
+    path: /deleteDiscount/{id}
+    controller: App\Controller\DiscountController::deleteDiscount
 
 warehouse:
     path: /warehouse

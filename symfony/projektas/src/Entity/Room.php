@@ -31,11 +31,11 @@ class Room
      */
     private $kaina;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="reservation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="room")
      */
     private $reservations;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="hotel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotel", inversedBy="rooms")
      * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      */
     private $hotel;

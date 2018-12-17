@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Entity\Room;
+use App\Entity\Discount;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,9 +36,13 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
+            $discount = $this->getDoctrine()->getRepository(Discount::class)->findOneByCode($form['discountCode']->getData());
             $newReservation->setClient($this->getUser()->getClientAccount());
+            $newReservation->setDiscount($discount);
             $em->persist($newReservation);
             
+
+
             $em->flush();
             return $this->render('mainPage.html.twig', array(
                 'success'=> "Reservation created successfully",

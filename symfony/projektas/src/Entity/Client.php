@@ -41,7 +41,7 @@ class Client
      */
     private $phoneNumber;
     /**
-     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client")
      */
     private $reservations;
 

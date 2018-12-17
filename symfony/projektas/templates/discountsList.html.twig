@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class = "mainScreen">
+		<h1><a href = "{{ path('mainMenu') }}"><</a>Nuolaidos <a href = "{{ path('addDiscount') }}">+</a> </h1> <br />
+		<table style="width:100%">
+			<tr>
+				<th>Paslaugos #</th>
+				<th>Viešbučio pavadinimas</th>
+				<th>Pavadinimas</th>
+				<th>Trinti</th>
+			</tr>
+			{% for discount in discounts %}
+			<tr>
+				<td>{{ discount.getId() }}</td>
+				<td>{{ discount.getValue() }}</td>
+				<td>{{ discount.getCode() }}</td>
+				<td><a href = "/deleteDiscount/{{ discount.getId() }}"}}>X</a></td>
+			</tr>
+			{% endfor %}
+		</table> 
+	</div>
+{% endblock %}

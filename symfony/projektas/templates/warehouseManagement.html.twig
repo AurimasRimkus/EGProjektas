@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block body %}
 	<div class = "mainScreen">
-		<h1> Meniu </h1>
+		<h1><a href = "{{ path('mainMenu') }}"><</a> Sandėlys </h1> <br />
 		<strong>Daiktų meniu</strong> <br /> <br />
 		<a href = "{{ path('itemList') }}">Sandėlio inventoriaus sąrašas</a><br />
 		<a href = "">Panaudoti daiktą užsakymui</a><br /><br />

@@ -24,7 +24,7 @@ class Review
      */
     private $rating;
     /**
-     * @ORM\OnetoOne(targetEntity="App\Entity\Reservation", mappedBy="reservation")
+     * @ORM\OnetoOne(targetEntity="App\Entity\Reservation", mappedBy="review")
      */
     private $reservation;
 
@@ -59,7 +59,7 @@ class Review
     }
     public function setReservation($reservation)
     {
-        $this->reservation = $reservation;
+        $this->reservations = $reservation;
     }
 
 }
